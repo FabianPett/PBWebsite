@@ -136,4 +136,6 @@ body {
         grid-template-columns: 1fr;
     }
 }
-
+* {
+    transition: none !important;
+}
