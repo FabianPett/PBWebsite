@@ -147,5 +147,8 @@ body {
     opacity: 1 !important;
     transition: none !important;
 }
-
+.animated-section {
+    opacity: 1 !important;
+    transform: none !important;
+}
 
