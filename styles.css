@@ -43,7 +43,97 @@ body {
   background-color: #555;
 }
 
+/* Ensuring #skills section is visible */
 #skills {
     display: block !important;
     visibility: visible !important;
+    opacity: 1 !important; /* Ensures opacity is not zero */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth fade-in */
+    padding: 20px 0;
+    background-color: #1f2937; /* Dark background for better contrast */
 }
+
+/* Section Title Style */
+#skills .section-title {
+    font-size: 2rem;
+    color: #fbbf24; /* Tailwind yellow color */
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Skill Cards Grid */
+#skills .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/* For larger screens (responsive design) */
+@media (min-width: 640px) {
+    #skills .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    #skills .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Skill Card Style */
+.skill-card {
+    background-color: #2d3748; /* Dark card background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hover effect */
+}
+
+/* Icons */
+.skill-card .text-yellow-400 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* Skill List */
+.skill-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.skill-card li {
+    display: flex;
+    align-items: center;
+    color: #e2e8f0; /* Light text color */
+    margin-bottom: 10px;
+}
+
+.skill-card li i {
+    margin-right: 10px;
+    color: #fbbf24; /* Yellow icon color */
+}
+
+/* Card Title */
+.skill-card h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #fbbf24; /* Yellow title */
+    margin-bottom: 10px;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 640px) {
+    /* Stack the cards vertically for small screens */
+    #skills .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
