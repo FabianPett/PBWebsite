@@ -654,6 +654,29 @@
                 }
             });
         });
+         document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate__fadeInUp");
+          } else {
+            entry.target.classList.remove("animate__fadeInUp");
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+    );
+
+    // Target skill and project cards
+    const skillCards = document.querySelectorAll(".skill-card");
+    const projectCards = document.querySelectorAll(".project-card");
+
+    skillCards.forEach((card) => observer.observe(card));
+    projectCards.forEach((card) => observer.observe(card));
+  });
     </script>
 </body>
 </html>
