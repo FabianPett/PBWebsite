@@ -42,3 +42,8 @@ body {
 .access-button button:hover {
   background-color: #555;
 }
+
+#skills {
+    display: block !important;
+    visibility: visible !important;
+}
