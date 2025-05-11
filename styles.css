@@ -20,12 +20,11 @@ body {
   height: auto;
 }
 
-/* Style for the access button */
+/* Style for the access button in top-right corner */
 .access-button {
   position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%); /* Centers the button horizontally */
+  top: 20px; /* Distance from the top of the page */
+  right: 20px; /* Distance from the right edge of the page */
   z-index: 10; /* Ensures button is above the image */
 }
 
