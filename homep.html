@@ -416,7 +416,7 @@
     <section id="contact" class="py-20 bg-gray-900">
         <div class="container mx-auto px-6">
             <h2 class="section-title text-3xl font-bold mb-16 text-center">Get In Touch</h2>
-            
+             <!--
             <div class="flex flex-col lg:flex-row gap-12">
                 <div class="lg:w-1/2">
                     <form id="contact-form" class="space-y-6">
@@ -440,7 +440,15 @@
                         </button>
                     </form>
                 </div>
-                
+                -->
+            <form id="contact-form">
+                  <input type="text" id="name" placeholder="Name" required><br>
+                  <input type="email" id="email" placeholder="Email" required><br>
+                  <textarea id="message" placeholder="Message" required></textarea><br>
+                  <button type="submit">Submit</button>
+              </form>
+            <div id="popup">Thank you! Message sent.</div>
+            
                 <div class="lg:w-1/2">
                     <div class="bg-gray-800 p-8 rounded-lg h-full">
                         <h3 class="text-2xl font-bold mb-6 text-yellow-400">Contact Information</h3>
@@ -490,14 +498,6 @@
         </div>
     </section>
 
-  <form id="contact-form">
-    <input type="text" id="name" placeholder="Name" required><br>
-    <input type="email" id="email" placeholder="Email" required><br>
-    <textarea id="message" placeholder="Message" required></textarea><br>
-    <button type="submit">Submit</button>
-  </form>
-
-  <div id="popup">Thank you! Message sent.</div>
 
 
     <!-- Footer -->
