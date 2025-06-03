@@ -159,7 +159,6 @@ body {
     transition: none !important;
 }
 .animated-section {
-    opacity: 1 !important;
-    transform: none !important;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
-
