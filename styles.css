@@ -5,6 +5,17 @@ html, body {
   height: 100%;
 }
 
+#popup {
+  display: none;
+  background: #d1fae5;
+  padding: 1em;
+  margin-top: 1em;
+  border-radius: 8px;
+  text-align: center;
+  color: #065f46; /* optional: darker green for text */
+  font-weight: 600;
+}
+
 /* Use Flexbox to center the image container */
 body {
   display: flex;
