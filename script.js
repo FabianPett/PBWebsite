@@ -6,8 +6,8 @@ function askPassword() {
     alert("Incorrect password.");
   }
 }
-
-<script>
+document.addEventListener("DOMContentLoaded", function () {
+  <script>
 document.getElementById("contact-form").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -41,3 +41,5 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
   .catch(error => console.error("Form submission error:", error));
 });
 </script>
+
+});
