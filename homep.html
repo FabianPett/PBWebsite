@@ -617,6 +617,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         console.log("FormSubmit response:", data);
         document.getElementById("popup").style.display = "block";
+        document.getElementById("contact-form").reset();
       })
       .catch((error) => {
         console.error("Submission error:", error);
