@@ -575,19 +575,17 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
-    // Unified animation using Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate__fadeInUp');
-            } else {
-                // Optional: remove animation when element is out of view
-                // entry.target.classList.remove('animate__fadeInUp');
-            }
-        });
-    }, {
-        threshold: 0.1
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+            entry.target.style.opacity = '1'; // Ensure it stays visible
+        }
     });
+}, {
+    threshold: 0.1
+});
+
 
     // Observe various elements that need animation
     document.querySelectorAll('.timeline-item, .skill-card, .project-card, .animate-on-scroll').forEach(el => {
