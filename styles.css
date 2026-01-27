@@ -65,14 +65,16 @@ body {
 }
 
 #skills .section-title {
-    font-size: 2rem;
-    color: #fbbf24;
-    text-align: left;
-    margin: 0 0 40px 0;
-    max-width: 1200px;
-    width: 100%;
+  font-size: 2rem;
+  color: #fbbf24;
+  text-align: left;
+  margin: 0 0 40px 0;
+  display: inline-block;
 }
 
+#skills .section-title::after {
+  width: 100px !important;   
+}
 
 
 
