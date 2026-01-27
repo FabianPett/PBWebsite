@@ -75,16 +75,6 @@ body {
     display: inline-block;   /* this is key */
 }
 
-#skills .section-title::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    width: 40%;          /* adjust to match other sections */
-    height: 3px;
-    background: #fbbf24;
-}
-
 
 
 
