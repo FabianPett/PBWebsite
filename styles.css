@@ -71,12 +71,18 @@ body {
     margin: 0 0 40px 0;
     max-width: 1200px;
     width: 100%;
+    position: relative;
+    display: inline-block;   /* this is key */
 }
 
 #skills .section-title::after {
-  width: 40%;          /* same width as your other sections */
-  left: 0;             /* start from left */
-  transform: none;     /* remove centering */
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 40%;          /* adjust to match other sections */
+    height: 3px;
+    background: #fbbf24;
 }
 
 
