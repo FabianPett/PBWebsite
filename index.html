@@ -104,18 +104,19 @@
         }
         
         .section-title {
-            position: relative;
-            display: inline-block;
+          position: relative;
+          display: inline-block;
         }
-        
+
         .section-title::after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            bottom: -8px;
-            left: 0;
-            background-color: #FFD700;
+          content: '';
+          position: absolute;
+          width: 80%;
+          height: 3px;
+          bottom: -8px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #FFD700;
         }
         
         .timeline-item::before {
