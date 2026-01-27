@@ -70,9 +70,11 @@ body {
     color: #fbbf24;
     text-align: left;
     margin-bottom: 40px;
-    max-width: 1200px; 
+    max-width: 1200px;
     width: 100%;
+    padding: 0 60px;
 }
+
 
 
 /* Skill Cards Grid */
