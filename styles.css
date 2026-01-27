@@ -67,10 +67,13 @@ body {
 /* Section Title Style */
 #skills .section-title {
     font-size: 2rem;
-    color: #fbbf24; /* Tailwind yellow color */
-    text-align: center;
+    color: #fbbf24;
+    text-align: left;
     margin-bottom: 40px;
+    max-width: 1200px; 
+    width: 100%;
 }
+
 
 /* Skill Cards Grid */
 #skills .grid {
