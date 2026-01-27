@@ -64,27 +64,21 @@ body {
     background-color: #1f2937; /* Dark background for better contrast */
 }
 
-/* Section Title Style */
 #skills .section-title {
     font-size: 2rem;
     color: #fbbf24;
-    text-align: center; 
-    margin: 0 auto 40px auto;
+    text-align: left;
+    margin: 0 0 40px 0;
     max-width: 1200px;
     width: 100%;
-    padding: 0;        
+    padding: 0;
 }
 
 #skills .section-title::after {
-    content: '';
-    position: absolute;
+    left: 0;
     width: 50%;
-    height: 3px;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #FFD700;
 }
+
 
 
 /* Skill Cards Grid */
