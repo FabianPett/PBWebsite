@@ -73,6 +73,13 @@ body {
     width: 100%;
 }
 
+#skills .section-title::after {
+  width: 40%;          /* same width as your other sections */
+  left: 0;             /* start from left */
+  transform: none;     /* remove centering */
+}
+
+
 
 
 /* Skill Cards Grid */
