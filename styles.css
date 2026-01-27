@@ -75,7 +75,16 @@ body {
     padding: 0;        
 }
 
-
+#skills .section-title::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #FFD700;
+}
 
 
 /* Skill Cards Grid */
