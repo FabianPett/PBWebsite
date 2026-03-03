@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UK Accounting 101 Flashcards</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+–bg: #0f0f0f;
+–card-front: #1a1a2e;
+–card-back: #16213e;
+–accent: #e8c547;
+–accent2: #4fc3f7;
+–text: #f0f0f0;
+–muted: #888;
+–border: rgba(232, 197, 71, 0.2);
+}
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: ‘DM Sans’, sans-serif;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 2rem 1rem;
+background-image: radial-gradient(ellipse at 20% 50%, rgba(232,197,71,0.04) 0%, transparent 60%),
+radial-gradient(ellipse at 80% 20%, rgba(79,195,247,0.04) 0%, transparent 50%);
+}
+
+header {
+text-align: center;
+margin-bottom: 2.5rem;
+}
+
+header h1 {
+font-family: ‘DM Serif Display’, serif;
+font-size: clamp(2rem, 5vw, 3rem);
+letter-spacing: -0.02em;
+background: linear-gradient(135deg, var(–accent), var(–accent2));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+header p {
+color: var(–muted);
+font-size: 0.9rem;
+margin-top: 0.4rem;
+font-family: ‘DM Mono’, monospace;
+letter-spacing: 0.05em;
+}
+
+.progress-bar-wrap {
+width: 100%;
+max-width: 560px;
+margin-bottom: 1.5rem;
+}
+
+.progress-info {
+display: flex;
+justify-content: space-between;
+font-size: 0.8rem;
+color: var(–muted);
+font-family: ‘DM Mono’, monospace;
+margin-bottom: 0.5rem;
+}
+
+.progress-track {
+height: 3px;
+background: rgba(255,255,255,0.08);
+border-radius: 2px;
+overflow: hidden;
+}
+
+.progress-fill {
+height: 100%;
+background: linear-gradient(90deg, var(–accent), var(–accent2));
+border-radius: 2px;
+transition: width 0.4s ease;
+}
+
+/* CARD */
+.scene {
+width: 100%;
+max-width: 560px;
+height: 280px;
+perspective: 1200px;
+cursor: pointer;
+margin-bottom: 1.5rem;
+}
+
+.card {
+width: 100%;
+height: 100%;
+position: relative;
+transform-style: preserve-3d;
+transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card.flipped { transform: rotateY(180deg); }
+
+.card-face {
+position: absolute;
+inset: 0;
+backface-visibility: hidden;
+border-radius: 16px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 2rem;
+text-align: center;
+border: 1px solid var(–border);
+}
+
+.card-front {
+background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.card-back {
+background: linear-gradient(135deg, #0d1b2a 0%, #1a2744 100%);
+transform: rotateY(180deg);
+border-color: rgba(79,195,247,0.2);
+}
+
+.card-label {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.7rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–accent);
+margin-bottom: 1rem;
+opacity: 0.8;
+}
+
+.card-back .card-label { color: var(–accent2); }
+
+.card-term {
+font-family: ‘DM Serif Display’, serif;
+font-size: clamp(1.4rem, 4vw, 2rem);
+line-height: 1.2;
+color: #fff;
+}
+
+.card-definition {
+font-size: clamp(0.85rem, 2vw, 1rem);
+line-height: 1.6;
+color: #cdd9e5;
+font-weight: 300;
+}
+
+.card-hint {
+position: absolute;
+bottom: 1rem;
+font-size: 0.72rem;
+color: var(–muted);
+font-family: ‘DM Mono’, monospace;
+}
+
+/* CATEGORY TAG */
+.category-tag {
+position: absolute;
+top: 1rem;
+right: 1rem;
+font-size: 0.65rem;
+font-family: ‘DM Mono’, monospace;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+padding: 0.2rem 0.6rem;
+border-radius: 20px;
+background: rgba(232,197,71,0.1);
+color: var(–accent);
+border: 1px solid rgba(232,197,71,0.2);
+}
+
+/* CONTROLS */
+.controls {
+display: flex;
+gap: 0.75rem;
+align-items: center;
+margin-bottom: 2rem;
+}
+
+button {
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.85rem;
+font-weight: 500;
+border: none;
+cursor: pointer;
+border-radius: 10px;
+padding: 0.65rem 1.4rem;
+transition: all 0.2s ease;
+}
+
+.btn-prev, .btn-next {
+background: rgba(255,255,255,0.06);
+color: var(–text);
+border: 1px solid rgba(255,255,255,0.1);
+}
+
+.btn-prev:hover, .btn-next:hover {
+background: rgba(255,255,255,0.1);
+transform: translateY(-1px);
+}
+
+.btn-flip {
+background: var(–accent);
+color: #0f0f0f;
+font-weight: 600;
+padding: 0.65rem 2rem;
+}
+
+.btn-flip:hover {
+background: #f0d060;
+transform: translateY(-1px);
+box-shadow: 0 4px 20px rgba(232,197,71,0.3);
+}
+
+.btn-shuffle {
+background: rgba(79,195,247,0.1);
+color: var(–accent2);
+border: 1px solid rgba(79,195,247,0.2);
+}
+
+.btn-shuffle:hover {
+background: rgba(79,195,247,0.15);
+transform: translateY(-1px);
+}
+
+/* CATEGORY FILTER */
+.filter-wrap {
+display: flex;
+flex-wrap: wrap;
+gap: 0.5rem;
+max-width: 560px;
+justify-content: center;
+margin-bottom: 2rem;
+}
+
+.filter-btn {
+font-size: 0.75rem;
+padding: 0.35rem 0.9rem;
+border-radius: 20px;
+background: rgba(255,255,255,0.04);
+color: var(–muted);
+border: 1px solid rgba(255,255,255,0.08);
+cursor: pointer;
+font-family: ‘DM Mono’, monospace;
+transition: all 0.2s;
+}
+
+.filter-btn.active {
+background: rgba(232,197,71,0.12);
+color: var(–accent);
+border-color: rgba(232,197,71,0.3);
+}
+
+.filter-btn:hover { opacity: 0.8; }
+
+/* ALL CARDS LIST */
+.all-cards {
+width: 100%;
+max-width: 560px;
+}
+
+.all-cards h2 {
+font-family: ‘DM Serif Display’, serif;
+font-size: 1.3rem;
+color: var(–muted);
+margin-bottom: 1rem;
+border-bottom: 1px solid rgba(255,255,255,0.06);
+padding-bottom: 0.75rem;
+}
+
+.card-list-item {
+padding: 0.9rem 1rem;
+border-radius: 10px;
+border: 1px solid rgba(255,255,255,0.05);
+margin-bottom: 0.5rem;
+background: rgba(255,255,255,0.02);
+transition: background 0.2s;
+cursor: pointer;
+}
+
+.card-list-item:hover { background: rgba(255,255,255,0.04); }
+
+.card-list-term {
+font-weight: 600;
+font-size: 0.9rem;
+color: var(–accent);
+margin-bottom: 0.3rem;
+}
+
+.card-list-def {
+font-size: 0.82rem;
+color: var(–muted);
+line-height: 1.5;
+}
+
+.section-toggle {
+display: flex;
+gap: 0.5rem;
+max-width: 560px;
+margin-bottom: 1.5rem;
+}
+
+.toggle-btn {
+flex: 1;
+padding: 0.5rem;
+border-radius: 8px;
+font-size: 0.8rem;
+background: rgba(255,255,255,0.04);
+color: var(–muted);
+border: 1px solid rgba(255,255,255,0.08);
+cursor: pointer;
+font-family: ‘DM Sans’, sans-serif;
+transition: all 0.2s;
+}
+
+.toggle-btn.active {
+background: rgba(232,197,71,0.1);
+color: var(–accent);
+border-color: rgba(232,197,71,0.25);
+}
+
+.score-wrap {
+display: flex;
+gap: 0.5rem;
+max-width: 560px;
+width: 100%;
+margin-bottom: 1.5rem;
+}
+
+.score-btn {
+flex: 1;
+padding: 0.5rem;
+border-radius: 8px;
+font-size: 0.78rem;
+cursor: pointer;
+font-family: ‘DM Mono’, monospace;
+border: 1px solid;
+transition: all 0.2s;
+}
+
+.score-got {
+background: rgba(72, 199, 142, 0.08);
+color: #48c78e;
+border-color: rgba(72,199,142,0.2);
+}
+
+.score-got:hover { background: rgba(72, 199, 142, 0.14); }
+
+.score-missed {
+background: rgba(255, 99, 99, 0.08);
+color: #ff6363;
+border-color: rgba(255,99,99,0.2);
+}
+
+.score-missed:hover { background: rgba(255, 99, 99, 0.14); }
+
+.stats {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.75rem;
+color: var(–muted);
+text-align: center;
+margin-bottom: 1rem;
+}
+
+.stats span { color: var(–accent); }
+</style>
+
+</head>
+<body>
+
+<header>
+  <h1>UK Accounting 101</h1>
+  <p>FLASHCARDS · TAP TO REVEAL</p>
+</header>
+
+<div class="filter-wrap" id="filterWrap"></div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-info">
+    <span id="cardCounter">1 / 40</span>
+    <span id="categoryLabel">All Categories</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill" style="width:2.5%"></div>
+  </div>
+</div>
+
+<div class="scene" id="scene" onclick="flipCard()">
+  <div class="card" id="card">
+    <div class="card-face card-front">
+      <div class="card-label">Term</div>
+      <div class="card-term" id="termText"></div>
+      <div class="category-tag" id="categoryTag"></div>
+      <div class="card-hint">tap to reveal definition</div>
+    </div>
+    <div class="card-face card-back">
+      <div class="card-label">Definition</div>
+      <div class="card-definition" id="defText"></div>
+      <div class="card-hint">tap to flip back</div>
+    </div>
+  </div>
+</div>
+
+<div class="score-wrap">
+  <button class="score-btn score-got" onclick="markCard(true)">✓ Got it</button>
+  <button class="score-btn score-missed" onclick="markCard(false)">✗ Missed</button>
+</div>
+
+<div class="stats" id="stats">Got: <span id="gotCount">0</span> &nbsp;|&nbsp; Missed: <span id="missedCount">0</span></div>
+
+<div class="controls">
+  <button class="btn-prev" onclick="prevCard()">← Prev</button>
+  <button class="btn-flip" onclick="flipCard()">Flip</button>
+  <button class="btn-next" onclick="nextCard()">Next →</button>
+  <button class="btn-shuffle" onclick="shuffle()">⇄ Shuffle</button>
+</div>
+
+<div class="section-toggle">
+  <button class="toggle-btn active" id="toggleStudy" onclick="setView('study')">Study Mode</button>
+  <button class="toggle-btn" id="toggleAll" onclick="setView('all')">All Cards</button>
+</div>
+
+<div class="all-cards" id="allCards" style="display:none">
+  <h2>All Flashcards</h2>
+  <div id="cardListWrap"></div>
+</div>
+
+<script>
+const allCards = [
+  // FUNDAMENTALS
+  { term: "Double Entry Bookkeeping", def: "Every transaction affects at least two accounts — one debit and one credit of equal value. The foundation of all accounting.", cat: "Fundamentals" },
+  { term: "Debit", def: "An entry on the left side of an account. Increases assets and expenses; decreases liabilities, equity and income.", cat: "Fundamentals" },
+  { term: "Credit", def: "An entry on the right side of an account. Increases liabilities, equity and income; decreases assets and expenses.", cat: "Fundamentals" },
+  { term: "The Accounting Equation", def: "Assets = Liabilities + Equity. This equation must always balance.", cat: "Fundamentals" },
+  { term: "Trial Balance", def: "A list of all ledger account balances at a point in time. Total debits must equal total credits.", cat: "Fundamentals" },
+  { term: "General Ledger", def: "The master record of all financial transactions, organised by account type.", cat: "Fundamentals" },
+  { term: "Chart of Accounts", def: "A structured list of all account names and codes used by a business to record transactions.", cat: "Fundamentals" },
+  { term: "Accruals Concept", def: "Revenue and expenses are recognised when earned or incurred, not when cash is received or paid. Core UK GAAP principle.", cat: "Fundamentals" },
+  { term: "Going Concern", def: "The assumption that a business will continue to operate for the foreseeable future. Required for preparing standard accounts.", cat: "Fundamentals" },
+
+  // FINANCIAL STATEMENTS
+  { term: "Balance Sheet", def: "A snapshot of a business's financial position at a specific date — showing assets, liabilities and equity. Called a 'Statement of Financial Position' under IFRS.", cat: "Financial Statements" },
+  { term: "Profit & Loss Account", def: "Shows income and expenses over a period, resulting in net profit or loss. Also called the Income Statement.", cat: "Financial Statements" },
+  { term: "Statement of Cash Flows", def: "Shows actual cash inflows and outflows from operating, investing and financing activities.", cat: "Financial Statements" },
+  { term: "Retained Earnings", def: "Cumulative profits kept in the business after dividends are paid. Shown in equity on the balance sheet.", cat: "Financial Statements" },
+  { term: "Gross Profit", def: "Revenue minus the cost of goods sold (COGS). Before deducting operating expenses.", cat: "Financial Statements" },
+  { term: "Net Profit", def: "Gross profit minus all operating expenses, interest and tax. The 'bottom line'.", cat: "Financial Statements" },
+  { term: "Turnover", def: "Total revenue generated by a business from its main trading activity. Does not include VAT.", cat: "Financial Statements" },
+
+  // ASSETS & LIABILITIES
+  { term: "Fixed Assets (Non-Current Assets)", def: "Assets held long-term for use in the business, not for resale. E.g. property, vehicles, machinery.", cat: "Assets & Liabilities" },
+  { term: "Current Assets", def: "Assets expected to be converted to cash within 12 months. E.g. debtors, stock, bank balance.", cat: "Assets & Liabilities" },
+  { term: "Current Liabilities", def: "Debts due to be paid within 12 months. E.g. trade creditors, VAT owed, bank overdraft.", cat: "Assets & Liabilities" },
+  { term: "Depreciation", def: "The spreading of a fixed asset's cost over its useful life. Reduces the asset's book value each year.", cat: "Assets & Liabilities" },
+  { term: "Straight Line Depreciation", def: "Depreciation method where an equal amount is charged each year. Formula: (Cost − Residual Value) ÷ Useful Life.", cat: "Assets & Liabilities" },
+  { term: "Debtors (Trade Receivables)", def: "Amounts owed to the business by customers who have bought on credit.", cat: "Assets & Liabilities" },
+  { term: "Creditors (Trade Payables)", def: "Amounts the business owes to suppliers for goods or services bought on credit.", cat: "Assets & Liabilities" },
+  { term: "Accrual", def: "An expense that has been incurred but not yet paid or invoiced at the year end.", cat: "Assets & Liabilities" },
+  { term: "Prepayment", def: "An expense paid in advance that relates to a future accounting period.", cat: "Assets & Liabilities" },
+
+  // UK SPECIFIC
+  { term: "UK GAAP", def: "Generally Accepted Accounting Practice in the UK. The set of accounting standards applied to UK company accounts. FRS 102 is the main standard.", cat: "UK Specific" },
+  { term: "FRS 102", def: "The Financial Reporting Standard applicable in the UK and Republic of Ireland. Applies to most small and medium companies.", cat: "UK Specific" },
+  { term: "Companies House", def: "The UK government register where all limited companies must file their accounts and confirmation statements annually.", cat: "UK Specific" },
+  { term: "HMRC", def: "His Majesty's Revenue and Customs — the UK tax authority responsible for collecting tax and enforcing tax law.", cat: "UK Specific" },
+  { term: "VAT (Value Added Tax)", def: "A consumption tax charged at 20% (standard rate) on most UK goods and services. Businesses collect it on behalf of HMRC.", cat: "UK Specific" },
+  { term: "Corporation Tax", def: "Tax paid by UK limited companies on their taxable profits. Currently 25% for profits over £250,000.", cat: "UK Specific" },
+  { term: "Self Assessment", def: "The system used by sole traders, partnerships and individuals with complex tax affairs to report income to HMRC.", cat: "UK Specific" },
+  { term: "Total Exemption Accounts", def: "Simplified accounts that small UK companies can file at Companies House, with reduced disclosure requirements.", cat: "UK Specific" },
+
+  // BOOKKEEPING
+  { term: "Bank Reconciliation", def: "The process of matching a business's cash book balance to the bank statement balance, identifying any differences.", cat: "Bookkeeping" },
+  { term: "Purchase Ledger", def: "Records all transactions with suppliers — invoices received and payments made.", cat: "Bookkeeping" },
+  { term: "Sales Ledger", def: "Records all transactions with customers — invoices raised and payments received.", cat: "Bookkeeping" },
+  { term: "Nominal Ledger", def: "Another term for the general ledger — contains all accounts used to prepare the financial statements.", cat: "Bookkeeping" },
+  { term: "Journal Entry", def: "A manual accounting entry used to record transactions that don't flow through the normal purchase or sales process.", cat: "Bookkeeping" },
+  { term: "Bad Debt", def: "A debtor balance that is unlikely to be recovered and must be written off as an expense.", cat: "Bookkeeping" },
+  { term: "Aged Debtors Report", def: "A report showing outstanding customer invoices grouped by how long they've been unpaid (30, 60, 90+ days).", cat: "Bookkeeping" },
+];
+
+let filtered = [...allCards];
+let current = 0;
+let isFlipped = false;
+let got = 0;
+let missed = 0;
+let activeCategory = 'All';
+
+const categories = ['All', ...new Set(allCards.map(c => c.cat))];
+
+function buildFilters() {
+  const wrap = document.getElementById('filterWrap');
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn' + (cat === 'All' ? ' active' : '');
+    btn.textContent = cat;
+    btn.onclick = () => filterBy(cat);
+    wrap.appendChild(btn);
+  });
+}
+
+function filterBy(cat) {
+  activeCategory = cat;
+  filtered = cat === 'All' ? [...allCards] : allCards.filter(c => c.cat === cat);
+  current = 0;
+  got = 0; missed = 0;
+  updateScore();
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.textContent === cat));
+  document.getElementById('categoryLabel').textContent = cat === 'All' ? 'All Categories' : cat;
+  showCard();
+}
+
+function showCard() {
+  isFlipped = false;
+  document.getElementById('card').classList.remove('flipped');
+  const c = filtered[current];
+  document.getElementById('termText').textContent = c.term;
+  document.getElementById('defText').textContent = c.def;
+  document.getElementById('categoryTag').textContent = c.cat;
+  document.getElementById('cardCounter').textContent = `${current + 1} / ${filtered.length}`;
+  document.getElementById('progressFill').style.width = `${((current + 1) / filtered.length) * 100}%`;
+  if (document.getElementById('toggleAll').classList.contains('active')) buildList();
+}
+
+function flipCard() {
+  isFlipped = !isFlipped;
+  document.getElementById('card').classList.toggle('flipped', isFlipped);
+}
+
+function nextCard() {
+  current = (current + 1) % filtered.length;
+  showCard();
+}
+
+function prevCard() {
+  current = (current - 1 + filtered.length) % filtered.length;
+  showCard();
+}
+
+function shuffle() {
+  filtered.sort(() => Math.random() - 0.5);
+  current = 0;
+  showCard();
+}
+
+function markCard(didGetIt) {
+  if (didGetIt) got++;
+  else missed++;
+  updateScore();
+  nextCard();
+}
+
+function updateScore() {
+  document.getElementById('gotCount').textContent = got;
+  document.getElementById('missedCount').textContent = missed;
+}
+
+function setView(view) {
+  const studyEl = document.getElementById('scene').parentElement || document.body;
+  document.getElementById('toggleStudy').classList.toggle('active', view === 'study');
+  document.getElementById('toggleAll').classList.toggle('active', view === 'all');
+  document.getElementById('allCards').style.display = view === 'all' ? 'block' : 'none';
+  if (view === 'all') buildList();
+}
+
+function buildList() {
+  const wrap = document.getElementById('cardListWrap');
+  wrap.innerHTML = '';
+  filtered.forEach((c, i) => {
+    const div = document.createElement('div');
+    div.className = 'card-list-item';
+    div.innerHTML = `<div class="card-list-term">${c.term}</div><div class="card-list-def">${c.def}</div>`;
+    div.onclick = () => { current = i; setView('study'); showCard(); };
+    wrap.appendChild(div);
+  });
+}
+
+// Keyboard support
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') nextCard();
+  if (e.key === 'ArrowLeft') prevCard();
+  if (e.key === ' ') { e.preventDefault(); flipCard(); }
+});
+
+buildFilters();
+showCard();
+</script>
+
+</body>
+</html>
