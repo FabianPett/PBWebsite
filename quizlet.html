@@ -8,6 +8,10 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
 
+/* Override global site CSS */
+html { background-color: #0f0f0f !important; }
+body { background-color: #0f0f0f !important; background: #0f0f0f !important; display: flex !important; flex-direction: column !important; align-items: center !important; }
+
 :root {
 –bg: #0f0f0f;
 –card-front: #1a1a2e;
@@ -21,9 +25,10 @@
 
 - { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-background: var(–bg);
-color: var(–text);
+html, body {
+background: #0f0f0f !important;
+background-color: #0f0f0f !important;
+color: var(–text) !important;
 font-family: ‘DM Sans’, sans-serif;
 min-height: 100vh;
 display: flex;
